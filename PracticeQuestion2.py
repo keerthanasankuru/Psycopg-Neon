@@ -19,12 +19,20 @@ def project():
     # entries.append(entry1)
     # entries.append(entry2)
     # entries.append(entry3)
+    # VALID ID
+    for i in range(len(entries)):
+        if not entries[i][0].isdigit():
+            entries[i][0]=int(entries[i][0])
+        else:
+            print("Enter Valid Age")
+
+    # VALID NAME
     for i in range(len(entries)):
         for char in entries[i][1]:
             if char.isdigit():
                 print("Invalid Name to Insert")
                 return
-
+    # validation of age
     for i in range(len(entries)):
         int_part=int(float(entries[i][2]))
         year,month=entries[i][2].split(".")
@@ -35,7 +43,7 @@ def project():
         if int(month)==12:
             entries[i][2]=int_part+1
 
-        
+    # QUERIES
     cur.execute("""CREATE TABLE USERS (ID INT PRIMARY KEY,
     NAME VARCHAR(50),AGE FLOAT)""")
     conn.commit()
